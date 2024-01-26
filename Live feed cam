@@ -1,0 +1,37 @@
+import sys
+import pygame
+import pygame.camera
+
+pygame.init()
+pygame.camera.init()
+WIDTH = 640
+HEIGHT = 480
+
+screen = pygame.display.set_mode((WIDTH,HEIGHT),0)
+cam_list = pygame.camera.list_cameras()
+print(cam_list)
+cam = pygame.camera.CAmera(cam_list[0], (32,24)0
+cam.start()
+
+running = True
+
+while True:
+  for event in pygame.event.get():
+
+      if event.type == pygame.QUIT:
+           cam.stop()
+           running = False
+          sys.exit()
+
+   image1 = cam.get_image()
+   image1 = pygame.transform.scale(image1, (640,480))
+   screen.blit(image1, (0,0))
+   pygame.draw.circle(screen, 'red', (WIDTH/2, HEIGHT/2, 5)
+
+   pygame.display.update()
+
+
+
+cam.stop()
+pygame.quit()
+sys.exit()
